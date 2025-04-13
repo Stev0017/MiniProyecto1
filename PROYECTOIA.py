@@ -66,3 +66,15 @@ while cap.isOpened():
                 obj_x_f = filtro_suavizado * cx + (1 - filtro_suavizado) * obj_x_f
                 obj_y_f = filtro_suavizado * cy + (1 - filtro_suavizado) * obj_y_f
                 obj_x, obj_y = int(obj_x_f), int(obj_y_f)
+ # Dibujar objeto virtual
+            cv2.circle(frame, (obj_x, obj_y), 20, (0, 0, 255), -1)
+            
+            
+            cv2.putText(frame, f"Gesto: {gesto}", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
+    
+    cv2.imshow("Hand Tracking", frame)
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+cap.release()
+cv2.destroyAllWindows()
